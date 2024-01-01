@@ -115,12 +115,8 @@
                             <label for="method-8" class="payment-method-item">
                                 <p>333+37=370 Diamond</p>
                             </label>
-
-
                         </div>
                         <!-- Product End -->
-
-
 
                         <button class="payment-form-submit-button">Setuju</button>
                     </form>
@@ -134,6 +130,7 @@
             const id = document.getElementById('id').value;
             const nomor = document.getElementById('nomor').value;
             const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+            const price = document.getElementById("price-display").innerText;
 
 
             const url = "https://api.whatsapp.com/send?phone=6281915651926&text=*Zona Id*%20%3A%20 " +
@@ -142,6 +139,8 @@
                 nomor +
                 " %0A*Product*%20%3A%20 " +
                 selectedPayment +
+                " %0A*Harga*%20%3A%20 " +
+                price +
                 " %0A%0A*Saya%20ingin%20membeli%20produk%20di%20atas*";
 
             window.open(url);
@@ -162,7 +161,7 @@
             if (selectedRadio) {
                 var selectedProduct = selectedRadio.value;
                 var selectedPrice = selectedRadio.getAttribute("data-price");
-                var priceText = selectedPrice ? "Harga: $" + selectedPrice : "Pilih produk untuk melihat harga";
+                var priceText = selectedPrice ? "Rp. " + selectedPrice : "Pilih produk untuk melihat harga";
                 priceDisplayElement.textContent = priceText;
             }
         }
