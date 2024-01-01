@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="tailwindcss-colors.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Payment Page</title>
+</head>
+
+<body>
+
+    <!-- start: Payment -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-wrapper">
+                <div class="payment-left">
+                    <div class="payment-header">
+                        <img src="images/mlbb.jpg" alt="">
+                        <div class="payment-header-title">Mobile Legend</div>
+                    </div>
+                    <div class="payment-content">
+                        <div class="payment-body">
+                            <div class="payment-plan">
+                                <div class="payment-plan-type">Aep</div>
+                                <div class="payment-plan-info">
+                                    <div class="payment-plan-info-name"></div>
+                                    <div class="payment-plan-info-price">Topup game online di aep store dijamin murah
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-summary">
+                                <div class="payment-summary-divider"></div>
+                                <div class="payment-summary-item payment-summary-total">
+                                    <div class="payment-summary-name">Total</div>
+                                    <div class="payment-summary-price" id="price-display">Rp.10.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment-right">
+                    <form class="payment-form" onsubmit="sendWhatsAppMessage()">
+                        <!-- Id -->
+                        <h1 class="payment-title">Masukan Id</h1>
+                        <div class="payment-form-group">
+                            <input type="text" placeholder=" " value="" class="payment-form-control" id="id">
+                            <label for="id" class="payment-form-label payment-form-label-required">Zona Id</label>
+                        </div>
+                        <div class="payment-form-group">
+                            <input type="text" placeholder=" " value="" class="payment-form-control" id="nomor">
+                            <label for="nomor" class="payment-form-label payment-form-label-required">Zona
+                                Server</label>
+                        </div>
+                        <!-- Id End -->
+
+
+                        <!-- Product -->
+                        <h1 class="payment-title">WeeklyPass</h1>
+                        <div class="payment-method">
+                            <input type="radio" name="payment" value="WeeklyPass" id="method-1">
+                            <label for="method-1" class="payment-method-item">
+                                <p>WeeklyPass</p>
+                            </label>
+                        </div>
+                        <h1 class="payment-title">Diamond</h1>
+                        <div class="payment-method1">
+
+                            <input type="radio" name="payment" value="10 Diamond" id="method-2" data-price="10.000"
+                                onchange="displayPrice()">
+                            <label for="method-2" class="payment-method-item">
+                                <p>9+1=10 Diamond</p>
+                            </label>
+
+
+                            <input type="radio" name="payment" value="14 Diamond" id="method-3" data-price="20.000"
+                                onchange="displayPrice()">
+                            <label for="method-3" class="payment-method-item">
+                                <p>13+1=14 Diamond</p>
+                            </label>
+
+
+                            <input type="radio" name="payment" value="18 Diamond" id="method-4" data-price="30.000"
+                                onchange="displayPrice()">
+                            <label for="method-4" class="payment-method-item">
+                                <p>17+1=18 Diamond</p>
+                            </label>
+
+
+                            <input type="radio" name="payment" value="36 Diamond" id="method-5" data-price="40.000"
+                                onchange="displayPrice()">
+                            <label for="method-5" class="payment-method-item">
+                                <p>33+3=36 Diamond</p>
+                            </label>
+
+
+                            <input type="radio" name="payment" value="74 Diamond" id="method-6" data-price="50.000"
+                                onchange="displayPrice()">
+                            <label for="method-6" class="payment-method-item">
+                                <p>67+7=74 Diamond</p>
+                            </label>
+
+
+                            <input type="radio" name="payment" value="222 Diamond" id="method-7" data-price="60.000"
+                                onchange="displayPrice()">
+                            <label for="method-7" class="payment-method-item">
+                                <p>200+22=222 Diamond</p>
+                            </label>
+
+
+                            <input type="radio" name="payment" value="370 Diamond" id="method-8" data-price="70.000"
+                                onchange="displayPrice()">
+                            <label for="method-8" class="payment-method-item">
+                                <p>333+37=370 Diamond</p>
+                            </label>
+
+
+                        </div>
+                        <!-- Product End -->
+
+
+
+                        <button class="payment-form-submit-button">Setuju</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end: Payment -->
+    <script>
+        function sendWhatsAppMessage() {
+            const id = document.getElementById('id').value;
+            const nomor = document.getElementById('nomor').value;
+            const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+
+
+            const url = "https://api.whatsapp.com/send?phone=6281915651926&text=*Zona Id*%20%3A%20 " +
+                id +
+                " %0A*Zona Server*%20%3A%20 " +
+                nomor +
+                " %0A*Product*%20%3A%20 " +
+                selectedPayment +
+                " %0A%0A*Saya%20ingin%20membeli%20produk%20di%20atas*";
+
+            window.open(url);
+        }
+
+        //Data-Price
+        function displayPrice() {
+            var radioButtons = document.getElementsByName("payment");
+            var priceDisplayElement = document.getElementById("price-display");
+
+            var selectedRadio;
+            for (var i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    selectedRadio = radioButtons[i];
+                    break;
+                }
+            }
+            if (selectedRadio) {
+                var selectedProduct = selectedRadio.value;
+                var selectedPrice = selectedRadio.getAttribute("data-price");
+                var priceText = selectedPrice ? "Harga: $" + selectedPrice : "Pilih produk untuk melihat harga";
+                priceDisplayElement.textContent = priceText;
+            }
+        }
+    </script>
+</body>
+
+</html>
